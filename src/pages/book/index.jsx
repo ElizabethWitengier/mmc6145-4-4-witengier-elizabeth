@@ -1,14 +1,17 @@
 import { Link, useParams, useNavigate, Navigate } from "react-router-dom"
 import { useBookContext } from "../../context/book"
 import styles from "./style.module.css"
-import { ADD_BOOK, REMOVE_BOOK, SEARCH_BOOKS } from "../../context/book/actions"
 // TODO: import actions
+import { ADD_BOOK, REMOVE_BOOK, SEARCH_BOOKS } from "../../context/book/actions"
+import reducer from "../../context/book/reducer"
+import initialState from "../../context/book/state"
+
 
 export default function Book() {
   const { bookId } = useParams()
   const navigate = useNavigate()
   // TODO: Use dispatch appropriately to add/remove books
-  const [{bookSearchResults, favoriteBooks}, dispatch] = useBookContext()
+  const [{bookSearchResults, favoriteBooks}, dispatch] = useBookContext(reducer, initialState)
 
   let isFavoriteBook = false
   let book = favoriteBooks.find(book => book.id === bookId)
@@ -25,11 +28,11 @@ export default function Book() {
         {
           isFavoriteBook
           // TODO: add onClick function that calls dispatch to add a book
-          ? <button>
+          ? <button onClick={() =>dispatch({action: ADD_BOOK})}>
               Remove from Favorites
             </button>
           // TODO: add onClick function that calls dispatch to remove a book
-          : <button>
+          : <button onClick={() =>dispatch({action: REMOVE_BOOK})}>
               Add to Favorites
             </button>
         }

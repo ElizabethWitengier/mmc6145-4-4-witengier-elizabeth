@@ -7,6 +7,7 @@ import {
 
 
 export default function reducer(prevState, {action, payload}) {
+  const {} = prevState
   switch(action) {
     case ADD_BOOK:
       return {...prevState}

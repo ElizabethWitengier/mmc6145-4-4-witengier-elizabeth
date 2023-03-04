@@ -1,4 +1,4 @@
-import {useContext, createContext, useReducer} from 'react'
+import { useContext, createContext, useReducer, useEffect } from 'react'
 import initialState from './state'
 import reducer from './reducer'
 
@@ -13,5 +13,8 @@ export const useBookContext = () => {
 
 export const BookProvider = (props) => {
   const [state, dispatch] = useReducer(reducer, initialState)
+ /*  useEffect(() => {
+    localStorage.getItem("favoriteBooks") ? dispatch({action}): []
+  }) */
   return <bookContext.Provider {...props} value={[state, dispatch]} />
 }

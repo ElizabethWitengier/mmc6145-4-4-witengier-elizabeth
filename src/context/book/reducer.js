@@ -7,14 +7,14 @@ import {
 
 
 export default function reducer(prevState, {action, payload}) {
-  const {} = prevState
+  const {bookSearchResults, favoriteBooks} = prevState
   switch(action) {
     case ADD_BOOK:
-      return {...prevState}
+      return {...prevState, favoriteBooks: [...favoriteBooks, payload]}
     case REMOVE_BOOK:
       return {...prevState}
     case SEARCH_BOOKS:
-      return {...prevState}
+      return {...prevState, bookSearchResults: [...bookSearchResults, payload]}
     default:
       return prevState
   }

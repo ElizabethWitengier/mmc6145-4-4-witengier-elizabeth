@@ -12,6 +12,7 @@ export default function Book() {
   const navigate = useNavigate()
   // TODO: Use dispatch appropriately to add/remove books
   const [{bookSearchResults, favoriteBooks}, dispatch] = useBookContext(reducer, initialState)
+  
 
   let isFavoriteBook = false
   let book = favoriteBooks.find(book => book.id === bookId)
